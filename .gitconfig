@@ -1,1 +1,19 @@
-../.gitconfig
+# This is Git's per-user configuration file.
+[samuelhoover]
+# Please adapt and uncomment the following lines:
+#	name = Samuel Hoover  [automatically generated]
+#	email = samhoover@Samuel-Hoovers-MacBook-Pro.local [automatically generated]
+	name = Sam Hoover
+	email = hooversamuelc@gmail.com
+[user]
+	name = samuelhoover
+	email = hooversamuelc@gmail.com
+[core]
+	excludesfile = ~/.gitignore
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[pull]
+	ff = only
