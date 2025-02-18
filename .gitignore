@@ -1,4 +1,8 @@
 dask/
 gh/
 iterm2/
-nvim/
+gh/
+dask/
+tmux*.log
+zsh/*
+!zsh/.zshrc
