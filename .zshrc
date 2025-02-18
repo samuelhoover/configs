@@ -79,21 +79,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git tmux zsh-autosuggestions zsh-syntax-highlighting web-search)
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/samhoover/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/samhoover/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/samhoover/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/samhoover/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 source $ZSH/oh-my-zsh.sh
 source /usr/local/gromacs/bin/GMXRC
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
@@ -130,3 +115,7 @@ alias bfg="java -jar ~/bfg-1.14.0.jar"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin/:$PATH"
