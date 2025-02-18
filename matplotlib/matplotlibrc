@@ -490,10 +490,10 @@ xtick.minor.top:     True    # draw x axis top minor ticks
 xtick.minor.bottom:  True    # draw x axis bottom minor ticks
 #xtick.alignment:     center  # alignment of xticks
 
-#ytick.left:          True    # draw ticks on the left side
-#ytick.right:         True    # draw ticks on the right side
-#ytick.labelleft:     True    # draw tick labels on the left side
-#ytick.labelright:    False   # draw tick labels on the right side
+ytick.left:          True    # draw ticks on the left side
+ytick.right:         True    # draw ticks on the right side
+ytick.labelleft:     True    # draw tick labels on the left side
+ytick.labelright:    False   # draw tick labels on the right side
 #ytick.major.size:    3.5     # major tick size in points
 #ytick.minor.size:    2       # minor tick size in points
 #ytick.major.width:   0.8     # major tick width in points
@@ -526,7 +526,7 @@ ytick.minor.right:   True    # draw y axis right minor ticks
 ## ***************************************************************************
 #legend.loc:           best
 legend.frameon:       False     # if True, draw the legend on a background patch
-#legend.framealpha:    0.8      # legend patch transparency
+legend.framealpha:    0.0      # legend patch transparency
 #legend.facecolor:     inherit  # inherit from axes.facecolor; or color spec
 #legend.edgecolor:     0.8      # background patch boundary color
 #legend.fancybox:      True     # if True, use a rounded box for the
