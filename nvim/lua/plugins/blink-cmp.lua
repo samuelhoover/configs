@@ -65,14 +65,14 @@ return {
     },
 
     -- experimental signature help support
-    -- signature = { enabled = true },
+    signature = { enabled = true },
 
     sources = {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
       default = { "lsp", "path", "snippets", "buffer" },
-      cmdline = {},
+      -- cmdline = {},  -- sources.cmdline has been replaced with cmdline.sources
     },
 
     keymap = {

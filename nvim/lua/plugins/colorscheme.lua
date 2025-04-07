@@ -1,11 +1,11 @@
 return {
   -- add colorschemes here
-  {
-    "rebelot/kanagawa.nvim",
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-  },
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  -- },
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  -- },
 
   -- Configure LazyVim to load colorschemes
   {
