@@ -27,3 +27,21 @@ vim.keymap.set(
   "<C-u>zz",
   { desc = "Center cursor after moving up half-page" }
 )
+vim.keymap.set(
+  "n",
+  "J",
+  "mzJ`z",
+  { desc = "Keep cursor in place when using `J`" }
+)
+vim.keymap.set(
+  "n",
+  "n",
+  "nzzzv",
+  { desc = "Center cursor when moving between search terms" }
+)
+vim.keymap.set(
+  "n",
+  "N",
+  "Nzzzv",
+  { desc = "Center cursor when moving between search terms" }
+)
