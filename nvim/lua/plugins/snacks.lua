@@ -5,61 +5,7 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = {
-      enabled = true,
-      sections = {
-        {
-          header = [[ 
-                                     ██                                 
-                                     ████                               
-                                      ███                               
-                                       ███                              
-                                       ████                             
-            ██                 ███      ████                            
-          ▓████               ███████    ████              ██    ▒      
-           ████               ███████    ████▓            ▓███ ▒██      
-            ███               ███████    ████▓            ████████      
-            ██▓                ▓█████   ▓█████         ████████▓        
-          ▓█████               ███████████████          ████            
-           ███████            ███████████████              ██           
-          ████████          █████████████████           ███████▒        
-█████     ██████████████▓ ███████████████████     ▓██████████████      █
-██████  ███████████████████████████████████████████████████████████  ███
-███████ ████████████████████████████████████████████████████████████████
-████████████████████████████████████████████████████████████████████████
-████████████████████████████████████████████████████████████████████████
-████████████████████████████████████████████████████████████████████████
-]],
-        },
-        {
-          icon = " ",
-          title = "Keymaps",
-          section = "keys",
-          indent = 2,
-          padding = 1,
-        },
-        {
-          icon = " ",
-          title = "Recent Files",
-          section = "recent_files",
-          indent = 2,
-          padding = 1,
-        },
-        {
-          icon = " ",
-          title = "Projects",
-          section = "projects",
-          indent = 2,
-          padding = 1,
-        },
-        {
-          section = "terminal",
-          cmd = "curl -s 'wttr.in/Cambridge,MA,USA?0'",
-          indent = 15,
-        },
-        { section = "startup" },
-      },
-    },
+    dashboard = require("plugins.snacks.dashboard"),
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
