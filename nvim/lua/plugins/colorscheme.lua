@@ -3,9 +3,9 @@ return {
   {
     "rebelot/kanagawa.nvim",
   },
-  {
-    "ellisonleao/gruvbox.nvim",
-  },
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  -- },
 
   -- Configure LazyVim to load colorschemes
   {
