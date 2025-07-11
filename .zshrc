@@ -80,13 +80,9 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git tmux zsh-autosuggestions zsh-syntax-highlighting web-search)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/gromacs/bin/GMXRC
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.1.3
 
 # User configuration
-
+export MUSIC_APP="Music"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -111,11 +107,10 @@ chruby ruby-3.1.3
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias glf="git log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%an%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)- %s%C(reset)'"
-alias bfg="java -jar ~/bfg-1.14.0.jar"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@17/bin/:$PATH"
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
