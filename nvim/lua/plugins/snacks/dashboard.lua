@@ -2,6 +2,8 @@ return {
   enabled = true,
   preset = {
     header = [[
+
+
                               ██                              
                               ████                            
                                ███                            
@@ -39,13 +41,13 @@ return {
       indent = 2,
       padding = 1,
     },
-    {
-      icon = " ",
-      title = "Projects",
-      section = "projects",
-      indent = 2,
-      padding = 1,
-    },
+    -- {
+    --   icon = " ",
+    --   title = "Projects",
+    --   section = "projects",
+    --   indent = 2,
+    --   padding = 1,
+    -- },
     {
       section = "terminal",
       cmd = "curl -s 'wttr.in/Cambridge,MA,USA?0'",
@@ -61,7 +63,7 @@ return {
           icon = " ",
           cmd = [[echo -e "$(git-graph --style round --color always --wrap 50 0 8 -f 'oneline')"]],
           indent = 1,
-          height = 58,
+          height = 52,
         },
       }
       return vim.tbl_map(function(cmd)
