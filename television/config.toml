@@ -15,8 +15,20 @@
 
 # General settings
 # ----------------------------------------------------------------------------
-frame_rate = 60
 tick_rate = 50
+default_channel = "files"
+
+# History settings
+# ---------------
+# Maximum number of entries to keep in the global history (default: 100)
+# The history tracks search queries across all channels and sessions
+# Set to 0 to disable history functionality entirely
+history_size = 200
+
+# Whether to use global history (default: false)
+# When true: history navigation shows entries from all channels
+# When false: history navigation is scoped to the current channel
+global_history = false
 
 [ui]
 # Whether to use nerd font icons in the UI
@@ -41,100 +53,141 @@ use_nerd_font_icons = true
 # │                                       │
 # └───────────────────────────────────────┘
 ui_scale = 100
-# Whether to show the top help bar in the UI by default
-# This option can be toggled with the (default) `ctrl-g` keybinding
-show_help_bar = true
-# Whether to show the preview panel in the UI by default
-# This option can be toggled with the (default) `ctrl-o` keybinding
-show_preview_panel = true
+
 # Where to place the input bar in the UI (top or bottom)
 input_bar_position = "top"
-# DEPRECATED: title is now always displayed at the top as part of the border
-# Where to place the preview title in the UI (top or bottom)
-# preview_title_position = "top"
+# What orientation should tv be (landscape or portrait)
+orientation = "landscape"
 # The theme to use for the UI
 # A list of builtin themes can be found in the `themes` directory of the television
 # repository. You may also create your own theme by creating a new file in a `themes`
 # directory in your configuration directory (see the `config.toml` location above).
 theme = "catppuccin"
+# The default size of the preview panel (in percentage of the screen)
+preview_size = 50
 
-# Previewers settings
-# ----------------------------------------------------------------------------
-[previewers.file]
-# The theme to use for syntax highlighting.
-# Bulitin syntax highlighting uses the same syntax highlighting engine as bat.
-# To get a list of your currently available themes, run `bat --list-themes`
-theme = "catppuccin"
+# UI Features
+# -------------
+# Each feature can have two states: enabled/disabled and visible/not visible
+# - enabled: controls whether the feature is functional
+# - visible: controls whether the feature is displayed (only works if enabled)
+#
+# You can use the old array format for backward compatibility:
+# features = ["preview_panel", "status_bar", "remote_control"]
+#
+# Or use the new detailed format:
+[ui.features]
+preview_panel = { enabled = true, visible = true }
+help_panel = { enabled = true, visible = false }
+status_bar = { enabled = true, visible = true }
+remote_control = { enabled = true, visible = false }
+
+# Feature-specific configurations
+# Each feature can have its own configuration section
+[ui.status_bar]
+# Status bar separators (bubble):
+#separator_open = ""
+#separator_close = ""
+# Status bar separators (box):
+separator_open = ""
+separator_close = ""
+
+[ui.preview_panel]
+# Preview panel size (percentage of screen width/height)
+size = 50
+#header = "{}"
+#footer = ""
+scrollbar = true
+
+[ui.remote_control]
+# Whether to show channel descriptions in remote control mode
+show_channel_descriptions = true
+# Whether to sort channels alphabetically
+sort_alphabetically = true
+
 
 # Keybindings
 # ----------------------------------------------------------------------------
 #
-# Channel mode
-# ------------------------
-[keybindings.Channel]
-# Quit the application
-quit = "esc"
-# Scrolling through entries
-select_next_entry = ["down", "ctrl-n", "ctrl-j"]
-select_prev_entry = ["up", "ctrl-p", "ctrl-k"]
-select_next_page = "pagedown"
-select_prev_page = "pageup"
-# Scrolling the preview pane
-scroll_preview_half_page_down = "ctrl-d"
-scroll_preview_half_page_up = "ctrl-u"
-# Select an entry
-select_entry = "enter"
-# Copy the selected entry to the clipboard
-copy_entry_to_clipboard = "ctrl-y"
-# Toggle the remote control mode
-toggle_remote_control = "ctrl-r"
-# Toggle the send to channel mode
-toggle_send_to_channel = "ctrl-s"
-# Toggle the help bar
-toggle_help = "ctrl-g"
-# Toggle the preview panel
-toggle_preview = "ctrl-o"
+# HARDCODED KEYBINDINGS (cannot be changed via config):
+# Input field actions (always active):
+#   Backspace          - Delete previous character
+#   Ctrl+w             - Delete previous word
+#   Ctrl+u             - Delete entire line
+#   Delete             - Delete next character
+#   Left/Right         - Move cursor left/right
+#   Home / Ctrl+a      - Go to input start
+#   End / Ctrl+e       - Go to input end
+#
+# CONFIGURABLE KEYBINDINGS (can be customized below):
+# --------------------------------------------------
+[keybindings]
+# Application control
+# ------------------
+esc = "quit"
+ctrl-c = "quit"
 
+# Navigation and selection
+# -----------------------
+down = "select_next_entry"
+ctrl-n = "select_next_entry"
+ctrl-j = "select_next_entry"
+up = "select_prev_entry"
+ctrl-p = "select_prev_entry"
+ctrl-k = "select_prev_entry"
 
-# Remote control mode
-# -------------------------------
-[keybindings.RemoteControl]
-# Quit the application
-quit = "esc"
-# Scrolling through entries
-select_next_entry = ["down", "ctrl-n", "ctrl-j"]
-select_prev_entry = ["up", "ctrl-p", "ctrl-k"]
-select_next_page = "pagedown"
-select_prev_page = "pageup"
-# Select an entry
-select_entry = "enter"
-# Toggle the remote control mode
-toggle_remote_control = "ctrl-r"
-# Toggle the help bar
-toggle_help = "ctrl-g"
-# Toggle the preview panel
-toggle_preview = "ctrl-o"
+# History navigation
+# -----------------
+ctrl-up = "select_prev_history"
+ctrl-down = "select_next_history"
 
+# Multi-selection
+# --------------
+tab = "toggle_selection_down"
+backtab = "toggle_selection_up"
+enter = "confirm_selection"
 
-# Send to channel mode
-# --------------------------------
-[keybindings.SendToChannel]
-# Quit the application
-quit = "esc"
-# Scrolling through entries
-select_next_entry = ["down", "ctrl-n", "ctrl-j"]
-select_prev_entry = ["up", "ctrl-p", "ctrl-k"]
-select_next_page = "pagedown"
-select_prev_page = "pageup"
-# Select an entry
-select_entry = "enter"
-# Toggle the send to channel mode
-toggle_send_to_channel = "ctrl-s"
-# Toggle the help bar
-toggle_help = "ctrl-g"
-# Toggle the preview panel
-toggle_preview = "ctrl-o"
+# Preview panel control
+# --------------------
+pagedown = "scroll_preview_half_page_down"
+pageup = "scroll_preview_half_page_up"
 
+# Data operations
+# --------------
+ctrl-y = "copy_entry_to_clipboard"
+ctrl-r = "reload_source"
+ctrl-s = "cycle_sources"
+
+# UI Features
+# ----------
+ctrl-t = "toggle_remote_control"
+ctrl-o = "toggle_preview"
+ctrl-h = "toggle_help"
+f12 = "toggle_status_bar"
+# ctrl-l = "toggle_layout"
+
+# Input field actions
+# ----------------------------------------
+backspace = "delete_prev_char"
+ctrl-w = "delete_prev_word"
+ctrl-u = "delete_line"
+delete = "delete_next_char"
+left = "go_to_prev_char"
+right = "go_to_next_char"
+home = "go_to_input_start"
+ctrl-a = "go_to_input_start"
+end = "go_to_input_end"
+ctrl-e = "go_to_input_end"
+
+# Event bindings
+# ----------------------------------------------------------------------------
+# Event bindings map non-keyboard events to actions
+# This includes mouse events, resize events, and custom events
+[events]
+# Mouse events
+# -----------
+mouse-scroll-up = "scroll_preview_up"
+mouse-scroll-down = "scroll_preview_down"
 
 # Shell integration
 # ----------------------------------------------------------------------------
@@ -144,46 +197,69 @@ toggle_preview = "ctrl-o"
 # E.g. typing `git checkout <CTRL-T>` will open television with a list of
 # branches to choose from.
 
-[shell_integration.commands]
-# Add your commands here. Each key is a command that will trigger tv with the
-# corresponding channel as value.
-# Example: say you want the following prompts to trigger the following channels
+[shell_integration]
+# This specifies the default fallback channel if no other channel is matched.
+fallback_channel = "files"
+
+[shell_integration.channel_triggers]
+# Add your channel triggers here. Each key is a channel that will be triggered
+# by the corresponding commands.
+# Example: say you want the following commands to trigger the following channels
 # when pressing <CTRL-T>:
-#          `git checkout` should trigger the `git-branches` channel
-#          `ls`           should trigger the `dirs` channel
-#          `cat`          should trigger the `files` channel
+#          `git checkout`  should trigger the `git-branches` channel
+#          `ls`            should trigger the `dirs` channel
+#          `cat` and `cp`  should trigger the `files` channel
 #
 # You would add the following to your configuration file:
 # ```
-# [shell_integration.commands]
-# "git checkout" = "git-branches"
-# "ls" = "dirs"
-# "cat" = "files"
+# [shell_integration.channel_triggers]
+# "git-branches" = ["git checkout"]
+# "dirs" = ["ls"]
+# "files" = ["cat", "cp"]
 # ```
+"alias" = ["alias", "unalias"]
+"env" = ["export", "unset"]
+"dirs" = ["cd", "ls", "rmdir"]
+"files" = [
+  "cat",
+  "less",
+  "head",
+  "tail",
+  "vim",
+  "nano",
+  "bat",
+  "cp",
+  "mv",
+  "rm",
+  "touch",
+  "chmod",
+  "chown",
+  "ln",
+  "tar",
+  "zip",
+  "unzip",
+  "gzip",
+  "gunzip",
+  "xz",
+]
+"git-diff" = ["git add", "git restore"]
+"git-branch" = [
+  "git checkout",
+  "git branch",
+  "git merge",
+  "git rebase",
+  "git pull",
+  "git push",
+]
+"git-log" = ["git log", "git show"]
+"docker-images" = ["docker run"]
+"git-repos" = ["nvim", "code", "hx", "git clone"]
 
-# environment variables
-"export" = "env"
-"unset" = "env"
 
-# dirs channel
-"cd" = "dirs"
-"ls" = "dirs"
-"rmdir" = "dirs"
-
-# files channel
-"cat" = "files"
-"less" = "files"
-"head" = "files"
-"tail" = "files"
-"vim" = "files"
-"bat" = "files"
-
-# git-branch channel
-"git checkout" = "git-branch"
-"git branch -d" = "git-branch"
-
-# docker-images channel
-"docker run" = "docker-images"
-
-# gitrepos channel
-"nvim" = "git-repos"
+[shell_integration.keybindings]
+# controls which key binding should trigger tv
+# for shell autocomplete
+"smart_autocomplete" = "ctrl-t"
+# controls which keybinding should trigger tv
+# for command history
+"command_history" = "ctrl-r"

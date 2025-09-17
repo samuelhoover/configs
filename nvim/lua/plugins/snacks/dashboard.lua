@@ -50,7 +50,7 @@ return {
     -- },
     {
       section = "terminal",
-      cmd = "curl -s 'wttr.in/Cambridge,MA,USA?0'",
+      cmd = "curl -s 'wttr.in/Cambridge,MA,USA?0u'",
       indent = 15,
     },
     { section = "startup" },
