@@ -1,10 +1,10 @@
 if lazyvim_docs then
   -- LSP Server to use for Python.
-  -- Set to "basedpyright" to use basedpyright instead of pyright.
-  vim.g.lazyvim_python_lsp = "basedpyright"
+  -- Set to "ruff" to use ruff instead of pyright.
+  vim.g.lazyvim_python_lsp = "ruff"
 end
 
-local lsp = vim.g.lazyvim_python_lsp or "basedpyright"
+-- local lsp = vim.g.lazyvim_python_lsp or "ruff"
 
 return {
   {
@@ -23,13 +23,24 @@ return {
     opts = {
       servers = {
         pyright = {
-          enabled = lsp == "pyright",
+          -- enabled = lsp == "pyright",
+          mason = false,
         },
         basedpyright = {
-          enabled = lsp == "basedpyright",
+          -- enabled = lsp == "basedpyright",
+          mason = true,
+          autostart = true,
         },
-        [lsp] = {
-          enabled = true,
+        ruff = {
+          mason = true,
+          autostart = true,
+          lint = {
+            select = { "ALL" },
+            preview = true,
+          },
+          format = {
+            preview = true,
+          },
         },
       },
       setup = {
@@ -97,11 +108,11 @@ return {
       { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" },
     },
   },
-  {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      opts.auto_brackets = opts.auto_brackets or {}
-      table.insert(opts.auto_brackets, "python")
-    end,
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = function(_, opts)
+  --     opts.auto_brackets = opts.auto_brackets or {}
+  --     table.insert(opts.auto_brackets, "python")
+  --   end,
+  -- },
 }
