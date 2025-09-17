@@ -15,6 +15,10 @@ return {
         --  mason = false,
         --  autostart = false,
         -- },
+        ruff = {
+          mason = true,
+          autostart = true,
+        },
         yamlls = {
           -- Have to add this for yamlls to understand that we support line folding
           capabilities = {
