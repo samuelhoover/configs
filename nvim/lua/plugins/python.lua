@@ -1,10 +1,10 @@
 if lazyvim_docs then
   -- LSP Server to use for Python.
   -- Set to "ruff" to use ruff instead of pyright.
-  vim.g.lazyvim_python_lsp = "ruff"
+  vim.g.lazyvim_python_lsp = "basedpyright"
 end
 
--- local lsp = vim.g.lazyvim_python_lsp or "ruff"
+local lsp = "basedpyright"
 
 return {
   {
@@ -23,15 +23,16 @@ return {
     opts = {
       servers = {
         pyright = {
-          -- enabled = lsp == "pyright",
+          enabled = lsp == "pyright",
           mason = false,
         },
         basedpyright = {
-          -- enabled = lsp == "basedpyright",
+          enabled = lsp == "basedpyright",
           mason = true,
           autostart = true,
         },
         ruff = {
+          enabled = true,
           mason = true,
           autostart = true,
           lint = {
@@ -76,15 +77,24 @@ return {
     optional = true,
     dependencies = {
       "mfussenegger/nvim-dap-python",
+      "mason-org/mason.nvim",
+      ft = "python",
       -- stylua: ignore
       keys = {
         { "<leader>dPt", function() require('dap-python').test_method() end, desc = "Debug Method", ft = "python" },
         { "<leader>dPc", function() require('dap-python').test_class() end, desc = "Debug Class", ft = "python" },
       },
       config = function()
-        local path =
-          require("mason-registry").get_package("debugpy"):get_install_path()
-        require("dap-python").setup(path .. "/venv/bin/python")
+        local mason_registry = require("mason-registry")
+
+        if not mason_registry.has_package("debugpy") then
+          vim.notify("debugpy is not installed in Mason", vim.log.levels.ERROR)
+          return
+        end
+
+        local debugpy = mason_registry.get_package("debugpy")
+        local path = debugpy:get_install_path() .. "/venv/bin/python"
+        require("dap-python").setup(path)
       end,
     },
   },
@@ -108,11 +118,4 @@ return {
       { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" },
     },
   },
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = function(_, opts)
-  --     opts.auto_brackets = opts.auto_brackets or {}
-  --     table.insert(opts.auto_brackets, "python")
-  --   end,
-  -- },
 }
