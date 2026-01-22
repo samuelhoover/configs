@@ -61,9 +61,9 @@ return {
         {
           title = "Git Graph",
           icon = " ",
-          cmd = [[echo -e "$(git-graph --style round --color always --wrap 50 0 8 -f 'oneline')"]],
-          indent = 1,
-          height = 52,
+          cmd = [[echo -e "$(git-graph --style round --color always --wrap 48 0 8 -f 'oneline')"]],
+          indent = 0,
+          height = 53,
         },
       }
       return vim.tbl_map(function(cmd)

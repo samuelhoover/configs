@@ -6,14 +6,21 @@ return {
   opts = {
     bigfile = { enabled = true },
     dashboard = require("plugins.snacks.dashboard"),
+    debug = { enabled = true },
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
+    lazygit = { enabled = true },
     notifier = {
       enabled = true,
       timeout = 3000,
     },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      sources = {
+        explorer = { hidden = true, ignored = true },
+      },
+    },
     quickfile = { enabled = true },
     rename = { enabled = true },
     scope = { enabled = true },
@@ -22,7 +29,7 @@ return {
     words = { enabled = true },
     styles = {
       notification = {
-        -- wo = { wrap = true } -- Wrap notifications
+        wo = { wrap = true }, -- Wrap notifications
       },
     },
   },
@@ -66,9 +73,18 @@ return {
     {
       "<leader>e",
       function()
-        Snacks.explorer()
+        local explorer_pickers = Snacks.picker.get({ source = "explorer" })
+        for _, v in pairs(explorer_pickers) do
+          if v:is_focused() then
+            v:close()
+          else
+            v:focus()
+          end
+        end
+        if #explorer_pickers == 0 then
+          Snacks.picker.explorer()
+        end
       end,
-      desc = "File Explorer",
     },
     -- find
     {

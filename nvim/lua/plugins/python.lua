@@ -27,7 +27,7 @@ return {
           mason = false,
         },
         basedpyright = {
-          enabled = lsp == "basedpyright",
+          enabled = true,
           mason = true,
           autostart = true,
         },
