@@ -1,10 +1,17 @@
 {
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.2",
   "schemes" : [
     {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xb034",
+          "productName" : "MX Master 3S",
+          "serialNumber" : "8E6B7EA8",
+          "vendorID" : "0x46d"
+        }
+      },
       "scrolling" : {
-        "speed" : {
-          "vertical" : 0
-        },
         "acceleration" : {
           "vertical" : 1
         },
@@ -12,19 +19,12 @@
           "vertical" : "auto"
         },
         "reverse" : {
-          "vertical" : true
-        }
-      },
-      "if" : {
-        "device" : {
-          "serialNumber" : "8E6B7EA8",
-          "category" : "mouse",
-          "productName" : "MX Master 3S",
-          "productID" : "0xb034",
-          "vendorID" : "0x46d"
+          "vertical" : false
+        },
+        "speed" : {
+          "vertical" : 0
         }
       }
     }
-  ],
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
+  ]
 }
