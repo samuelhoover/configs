@@ -1,0 +1,28 @@
+download_dir = "/Users/samhoover/Downloads/"
+
+max_concurrent_requests = 5
+
+default_region = "us-east-1"
+
+[ui.bucket_list]
+default_sort = "default"
+
+[ui.object_list]
+date_format = "%Y-%m-%d %H:%M:%S"
+date_width = 19
+default_sort = "default"
+
+[ui.object_detail]
+date_format = "%Y-%m-%d %H:%M:%S"
+
+[ui.help]
+max_help_width = 100
+
+[preview]
+highlight = true
+highlight_theme = "base16-eighties.dark"
+
+image = true
+
+encodings = ["utf-8", "utf-16be", "utf-16le"]
+auto_detect_encoding = true
