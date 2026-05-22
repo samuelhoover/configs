@@ -1,10 +1,4 @@
-dask/
-gh/
-iterm2/
-gh/
-dask/
-tmux*.log
-zsh/*
-!zsh/.zshrc
 wg/
 uv/
+jiratui
+roboflow
