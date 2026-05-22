@@ -6,3 +6,5 @@ dask/
 tmux*.log
 zsh/*
 !zsh/.zshrc
+wg/
+uv/
