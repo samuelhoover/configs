@@ -17,6 +17,19 @@ return {
     },
     picker = {
       enabled = true,
+      grep = {
+        args = {
+          "rg",
+          "--hidden",
+          "--no-ignore",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+        },
+      },
       sources = {
         explorer = { hidden = true, ignored = true },
       },
