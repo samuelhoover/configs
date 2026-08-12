@@ -6,18 +6,30 @@ return {
   { "ellisonleao/gruvbox.nvim", enabled = false },
   {
     "sainnhe/gruvbox-material",
-    enabled = true,
+    enabled = false,
     gruvbox_material_background = "medium",
     gruvbox_material_enable_bold = 1,
     gruvbox_material_enable_italic = 1,
     gruvbox_material_dim_inactive_window = 1,
+  },
+  {
+    "Aejkatappaja/cendre",
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("cendre").setup({
+        background = "medium", -- "hard" | "medium" | "soft"
+        italic_virtual_text = false,
+      })
+    end,
   },
 
   -- Configure LazyVim to load colorschemes
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "cendre",
     },
   },
 }

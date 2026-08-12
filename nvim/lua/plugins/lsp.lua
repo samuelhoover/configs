@@ -11,10 +11,14 @@ return {
           mason = false,
           autostart = false,
         },
-        -- basedpyright = {
-        --  mason = false,
-        --  autostart = false,
-        -- },
+        basedpyright = {
+          mason = true,
+          autostart = true,
+        },
+        ty = {
+          mason = false,
+          autostart = false,
+        },
         ruff = {
           mason = true,
           autostart = true,

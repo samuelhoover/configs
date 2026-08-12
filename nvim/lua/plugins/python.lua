@@ -24,12 +24,17 @@ return {
       servers = {
         pyright = {
           enabled = lsp == "pyright",
-          mason = false,
+          mason = lsp == "pyright",
         },
         basedpyright = {
-          enabled = true,
-          mason = true,
-          autostart = true,
+          enabled = lsp == "basedpyright",
+          mason = lsp == "basedpyright",
+          autostart = lsp == "basedpyright",
+        },
+        ty = {
+          enabled = lsp == "ty",
+          mason = lsp == "ty",
+          autostart = lsp == "ty",
         },
         ruff = {
           enabled = true,
