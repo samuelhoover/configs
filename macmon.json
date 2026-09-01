@@ -1,5 +1,7 @@
 {
   "view_type": "Sparkline",
-  "color": "Magenta",
-  "interval": 500
+  "color": "Cyan",
+  "interval": 500,
+  "per_core_view": true,
+  "ratio_mode": "Scaled"
 }
