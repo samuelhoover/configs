@@ -10,3 +10,4 @@ mpv/
 *lock.json
 *.lock
 linearmouse/
+*.db
