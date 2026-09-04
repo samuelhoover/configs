@@ -1,3 +1,8 @@
+if [[ ! -v _autocomplete__initialized ]]; then
+  source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+  typeset -g _autocomplete__initialized=1
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -83,7 +88,6 @@ plugins=(
   macos
   zsh-autosuggestions
   zsh-syntax-highlighting
-  zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -120,20 +124,11 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/Caskroom:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export MATPLOTLIBRC="/Users/samhoover/.config/matplotlib/matplotlibrc"
-export TMPDIR=$(getconf DARWIN_USER_TEMP_DIR)
-export JIRA_TUI_CONFIG_FILE="/Users/samhoover/.config/jiratui/config.yaml"
-export STU_ROOT_DIR="/Users/samhoover/.config/stu"
-
-export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
-export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
-export AWS_REGION=$(aws configure get region)
-export AWS_CLI_AUTO_PROMPT=on-partial
-
+eval "$(omp completions zsh)"
 eval "$(tv init zsh)"
