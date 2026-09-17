@@ -92,6 +92,14 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Up/Down: plain chronological history (OMZ binds *-line-or-beginning-search,
+# zsh-autocomplete binds up-line-or-search).
+for keymap in main viins vicmd; do
+  bindkey -M $keymap '^[[A' up-line-or-history '^[[B' down-line-or-history
+  bindkey -M $keymap '^[OA' up-line-or-history '^[OB' down-line-or-history
+done
+unset keymap
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
