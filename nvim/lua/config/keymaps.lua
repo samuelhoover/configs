@@ -15,6 +15,35 @@ map("n", "<c-/>", function()
   Snacks.terminal()
 end, { desc = "Terminal (cwd)" })
 
+local launcher = vim.fn.expand("~/harness/omp/launch.sh")
+
+-- run the launcher; surface failures instead of failing silently
+local function launch_omp(extra, input)
+  local cmd = ("%s --file %s %s 2>&1"):format(
+    vim.fn.shellescape(launcher),
+    vim.fn.shellescape(vim.fn.expand("%:p")),
+    extra or ""
+  )
+  local out = input and vim.fn.system(cmd, input) or vim.fn.system(cmd)
+  if vim.v.shell_error ~= 0 then
+    vim.notify(out, vim.log.levels.ERROR)
+  end
+end
+
+-- normal: pane opens, constraint draft typed in — append a task, press Enter
+vim.keymap.set("n", "<leader>a", function()
+  launch_omp()
+end, { silent = true, desc = "omp: launch agent pane" })
+
+-- visual: selection becomes the task; the agent starts immediately
+vim.keymap.set("x", "<leader>a", function()
+  local a, b = vim.fn.line("v"), vim.fn.line(".")
+  if a > b then
+    a, b = b, a
+  end
+  launch_omp(("--lines %d-%d"):format(a, b), vim.fn.getline(a, b))
+end, { silent = true, desc = "omp: launch agent with selection" })
+
 vim.keymap.set(
   "n",
   "<C-d>",
